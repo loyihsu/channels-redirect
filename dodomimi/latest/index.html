@@ -12,16 +12,18 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
-        let url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYdoBkuiJBRyJlWHsLjbK9BHS49R_BNUPtbkyk4dFPthPqUAsJmgsOn3xetAM5NLLmRYkVYfRw2LQp/pub?gid=408450959&single=true&output=csv";
-        $.ajax({
-			url: url,
-			type: "GET",
-			success: function (data) {
-				if (data.indexOf("https://") > -1) { window.location = data; }
-				else { document.getElementById("error").style.display = "block"; document.getElementById("Message").style.display = "none";  }
+		let channel = "UCgfzWZJIFxcHkjv-K1x0TtQ";
+		let request = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent("https://www.youtube.com/feeds/videos.xml?channel_id=" + channel);
+
+		$.getJSON(request, function (data) {
+			if (data.items[0] != undefined) {
+				let link = data.items[0].link;
+				window.location = link;
+			} else {
+				document.getElementById("error").style.display = "block"; document.getElementById("Message").style.display = "none";
 			}
 		});
-    </script>
+	</script>
 </head>
 
 <body>
