@@ -1,0 +1,41 @@
+<html>
+
+<head>
+	<title>最新影片 - 本本 - YouTube 頻道</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="../../style.css">
+	<!-- FontAwesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+		integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script>
+		let channel = "UCiiS3Rp6cLZs4qmM3lb8H2A";
+		let request = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent("https://www.youtube.com/feeds/videos.xml?channel_id=" + channel);
+
+		$.getJSON(request, function (data) {
+			if (data.items[0] != undefined) {
+				let link = data.items[0].link;
+				window.location = link;
+			} else {
+				document.getElementById("error").style.display = "block"; document.getElementById("Message").style.display = "none";
+			}
+		});
+	</script>
+
+</head>
+
+<body>
+	<div id="Message" class="centerScreened">
+		<p><i class="fas fa-spinner spin"></i></p>
+		<p>Loading...</p>
+	</div>
+	<div id="error" class="centerScreened">
+		<p><i class="fas fa-dizzy" style="font-size: 75pt; padding-bottom: 10pt;"></i></p>
+		<p>Uh-oh, something went wrong.</p>
+	</div>
+</body>
+
+</html>

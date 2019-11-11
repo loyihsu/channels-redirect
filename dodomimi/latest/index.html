@@ -1,18 +1,29 @@
 <html>
 
 <head>
-    <title>loyiCodes - YouTube 頻道</title>
+    <title>最新影片 - 多多跟米米的操場 Dodo & Mimi's Playground - YouTube 頻道</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta charset="UTF-8">
-
+    
     <link rel="stylesheet" href="/style.css">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
-        window.location = "https://www.youtube.com/channel/UCKm-1uCFFSachgLR1DFmHCg"
-    </script>
+		let channel = "UCgfzWZJIFxcHkjv-K1x0TtQ";
+		let request = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent("https://www.youtube.com/feeds/videos.xml?channel_id=" + channel);
+
+		$.getJSON(request, function (data) {
+			if (data.items[0] != undefined) {
+				let link = data.items[0].link;
+				window.location = link;
+			} else {
+				document.getElementById("error").style.display = "block"; document.getElementById("Message").style.display = "none";
+			}
+		});
+	</script>
 </head>
 
 <body>

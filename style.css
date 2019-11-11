@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+    font-family: monospace;
+}
+
+.centerScreened {
+    position: relative;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.spin {
+    animation: rotating 5s infinite;
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(720deg);
+    }
+}
+
+#error {
+    display: none;
+}
